@@ -6,6 +6,7 @@ import { RouterModule }   from '@angular/router';
 
 import { FacebookModule } from 'ngx-facebook';
 import { LoginService } from './services/login.service';
+import { TodoService } from './services/todo.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -35,7 +36,7 @@ import { HomeComponent } from './components/home/home.component';
       }
     ])
   ],
-  providers: [LoginService],
+  providers: [LoginService, TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

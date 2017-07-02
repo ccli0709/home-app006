@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AuthResponse, FacebookService, InitParams, LoginResponse } from 'ngx-facebook';
+import { Router } from '@angular/router';
 
 import { Auth } from '../../interfaces/auth'
 import { LoginService} from '../../services/login.service';
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   auth: Auth = {};
 
   constructor(private fb: FacebookService
-    , private loginService: LoginService) {
+    , private loginService: LoginService
+    , private router: Router) {
     let initParams: InitParams = {
       appId: '453702171654607',
       version: 'v2.9'
@@ -39,7 +41,10 @@ export class LoginComponent implements OnInit {
       .then((response: LoginResponse) => {
         this.loginService
           .login(response.authResponse.userID, response.authResponse.accessToken)
-          .then((auth: Auth) => this.auth = auth)
+          .then((auth: Auth) => {
+            this.auth = auth;
+            this.router.navigateByUrl('home');
+          })
           .catch((error: any) => console.error(error));
       })
       .catch((error: any) => console.error(error));

@@ -1,3 +1,19 @@
-<p>
-  home works!
-</p>
+<img *ngIf="auth.id" src="http://graph.facebook.com/{{ auth.facebookId }}/picture?type=normal" />
+
+<span class="badge badge-default">
+  TODO LIST
+</span>
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="form-group form-inline">
+      <input type="email" class="form-control" #newTodoBox>
+      <button class="btn btn-primary" (click)="createTodo(newTodoBox.value)">新增待辦事項</button>
+    </div>
+  </li>
+</ul>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let todo of todos">{{todo.value}}
+    <button class="btn btn-danger" (click)="deleteTodo(todo)">刪除</button>
+  </li>
+
+</ul>

@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http'
 import { Router } from '@angular/router';
-
+import 'rxjs/add/operator/toPromise';
 import { Auth } from '../interfaces/auth'
 
-import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class LoginService {
 
   auth: Auth = {};
+
+  // FOR TEST
+  //auth: Auth = {
+  //  email: 'ccli0709',
+  //  name: '李政忠',
+  //  authToken: "a2624cd0-484f-4706-8cba-a4e7d002aefa",
+  //  facebookId: "10154731161166452",
+  //};
 
   private headers = new Headers({
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -20,10 +27,10 @@ export class LoginService {
 
   getAuth(): Auth {
     // auth為空的話表示尚未登入
-    if (this.auth.email) {
-      this.router.navigateByUrl('login');
-    } else {
+    if (this.auth.facebookId) {
       return this.auth;
+    } else {
+      this.router.navigateByUrl('login');
     }
   }
 
