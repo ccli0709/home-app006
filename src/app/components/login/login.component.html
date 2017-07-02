@@ -1,0 +1,19 @@
+<p>
+  login works!
+</p>
+<h1>
+  {{title}}
+</h1>
+<button type="button" class="btn btn-primary" (click)="login()" [disabled]="auth.email">登入</button>
+<button type="button" class="btn btn-warning" (click)="logout()" [disabled]="!auth.email">登出</button>
+
+<button type="button" class="btn btn-warning" (click)="getTodos()">Get Todos</button>
+
+
+<ul class="list-group">
+  <li class="list-group-item">User Email: {{ auth.email }}</li>
+  <li class="list-group-item">User Name: {{ auth.name }}</li>
+  <li class="list-group-item">User FacebookId: {{ auth.facebookId }}</li>
+</ul>
+
+<img *ngIf="auth.facebookId" src="http://graph.facebook.com/{{ auth.facebookId }}/picture?type=normal" />
