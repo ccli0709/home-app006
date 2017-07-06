@@ -2,6 +2,9 @@
 
 import { Component } from '@angular/core';
 
+import { Alert } from './interfaces/alert'
+import { AlertService} from './services/alert.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,6 +13,16 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
-  constructor() { }
+  alerts: Alert[];
+  constructor(private alertService: AlertService) {
+    alertService.alerts$.subscribe((newAlerts) => {
+      this.alerts = newAlerts;
+    });
+  }
+
+  ngOnInit() {
+    // 获得Obervable对象并进行订阅
+    this.alerts = this.alertService.getAlerts();
+  }
 
 }

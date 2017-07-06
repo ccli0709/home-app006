@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { Auth } from '../interfaces/auth'
 import { Todo } from '../interfaces/todo'
 import { LoginService} from './login.service';
+import { AlertService} from './alert.service';
 
 @Injectable()
 export class TodoService {
@@ -14,13 +15,14 @@ export class TodoService {
 
   constructor(private http: Http
     , private router: Router
-    , private loginService: LoginService) { }
+    , private loginService: LoginService
+    , private alertService: AlertService) { }
 
 
   getTodos(): Promise<Todo[]> {
     console.log("getTodos");
     var auth: Auth = this.loginService.getAuth();
-    console.log(auth);
+    console.log(auth);  
     var headers = new Headers({
       'Content-Type': 'application/json',
       'X-AUTH-TOKEN': auth.authToken,
@@ -30,7 +32,7 @@ export class TodoService {
       .get(this.url, { headers: headers })
       .toPromise()
       .then(response => {
-        console.log(response.json());
+        this.alertService.setAlerts(response.json().alerts);
         return response.json().items;
       })
       .catch(this.handleError);

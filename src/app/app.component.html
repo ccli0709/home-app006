@@ -1,1 +1,4 @@
+<ngb-alert [dismissible]="false" *ngFor="let alert of alerts">
+  <strong>Warning!</strong> {{ alert.message }}
+</ngb-alert>
 <router-outlet></router-outlet>

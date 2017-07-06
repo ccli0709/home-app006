@@ -8,11 +8,14 @@ import { Auth } from '../interfaces/auth'
 @Injectable()
 export class LoginService {
 
-  auth: Auth = {};
+  auth: Auth = {
+    name: '',
+    authToken: '',
+    facebookId: ''
+  };
 
   // FOR TEST
   //auth: Auth = {
-  //  email: 'ccli0709',
   //  name: '李政忠',
   //  authToken: "a2624cd0-484f-4706-8cba-a4e7d002aefa",
   //  facebookId: "10154731161166452",

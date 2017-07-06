@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule }   from '@angular/router';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FacebookModule } from 'ngx-facebook';
 import { LoginService } from './services/login.service';
 import { TodoService } from './services/todo.service';
+import { AlertService } from './services/alert.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -21,6 +23,7 @@ import { HomeComponent } from './components/home/home.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    NgbModule.forRoot(),
     FacebookModule.forRoot(),
     RouterModule.forRoot([
       {
@@ -36,7 +39,7 @@ import { HomeComponent } from './components/home/home.component';
       }
     ])
   ],
-  providers: [LoginService, TodoService],
+  providers: [LoginService, TodoService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
